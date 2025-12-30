@@ -76,3 +76,21 @@ func DeleteUserHasPlayedTx(tx *gorm.DB, userID string, gameErogsID int) error {
 
 	return err
 }
+
+func FindUserHasPlayedByUserAndGameNameLike(userID string, gameErogsName string) (UserHasPlayed, error) {
+	var result UserHasPlayed
+
+	err := Dbs.
+		Model(&UserHasPlayed{}).
+		Joins("JOIN game_erogs ON game_erogs.id = user_has_playeds.game_erogs_id").
+		Where("user_has_playeds.user_id = ?", userID).
+		Where("game_erogs.name ILIKE ?", "%"+gameErogsName+"%").
+		Preload("GameErogs").
+		First(&result).Error
+
+	if err != nil {
+		return result, err
+	}
+
+	return result, nil
+}

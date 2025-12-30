@@ -73,3 +73,21 @@ func DeleteUserInWishTx(tx *gorm.DB, userID string, gameErogsID int) error {
 
 	return err
 }
+
+func FindUserInWishByUserAndGameNameLike(userID string, gameName string) (UserInWish, error) {
+	var result UserInWish
+
+	err := Dbs.
+		Model(&UserInWish{}).
+		Joins("JOIN game_erogs ON game_erogs.id = user_in_wishes.game_erogs_id").
+		Where("user_in_wishes.user_id = ?", userID).
+		Where("game_erogs.name ILIKE ?", "%"+gameName+"%").
+		Preload("GameErogs").
+		First(&result).Error
+
+	if err != nil {
+		return result, err
+	}
+
+	return result, nil
+}
