@@ -20,7 +20,7 @@ func Migration(db *gorm.DB) error {
 		&User{},
 		&BrandErogs{},
 		&GameErogs{},
-		&UserGameErogs{},
+		// &UserGameErogs{},
 		&UserHasPlayed{},
 		&UserInWish{},
 	)

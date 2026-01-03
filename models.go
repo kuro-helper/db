@@ -45,17 +45,17 @@ type (
 		UpdatedAt time.Time `gorm:"autoUpdateTime" json:"updatedAt"`
 	}
 
-	UserGameErogs struct {
-		UserID      string     `gorm:"primaryKey" json:"userId"`
-		GameErogsID int        `gorm:"primaryKey;autoIncrement:false" json:"gameErogsId"`
-		HasPlayed   bool       `json:"hasPlayed"`
-		InWish      bool       `json:"inWish"`
-		CompletedAt *time.Time `json:"completedAt,omitempty"`
-		CreatedAt   time.Time  `gorm:"autoCreateTime" json:"createdAt"`
-		UpdatedAt   time.Time  `gorm:"autoUpdateTime" json:"updatedAt"`
+	// UserGameErogs struct {
+	// 	UserID      string     `gorm:"primaryKey" json:"userId"`
+	// 	GameErogsID int        `gorm:"primaryKey;autoIncrement:false" json:"gameErogsId"`
+	// 	HasPlayed   bool       `json:"hasPlayed"`
+	// 	InWish      bool       `json:"inWish"`
+	// 	CompletedAt *time.Time `json:"completedAt,omitempty"`
+	// 	CreatedAt   time.Time  `gorm:"autoCreateTime" json:"createdAt"`
+	// 	UpdatedAt   time.Time  `gorm:"autoUpdateTime" json:"updatedAt"`
 
-		GameErogs *GameErogs `gorm:"foreignKey:GameErogsID;references:ID" json:"gameErogs,omitempty"` // 單向 preload
-	}
+	// 	GameErogs *GameErogs `gorm:"foreignKey:GameErogsID;references:ID" json:"gameErogs,omitempty"` // 單向 preload
+	// }
 
 	// 2025-12-25 separate two states
 	UserHasPlayed struct {

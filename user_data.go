@@ -23,32 +23,3 @@ func GetAllUser() ([]User, error) {
 
 	return user, nil
 }
-
-// 取得指定使用著遊玩資料
-func GetUserData(userID string) ([]UserGameErogs, error) {
-	var userGames []UserGameErogs
-
-	err := Dbs.
-		Preload("GameErogs").
-		Preload("GameErogs.BrandErogs").
-		Where("user_id = ?", userID).
-		Order("COALESCE(completed_at, created_at) DESC").
-		Find(&userGames).Error
-	if err != nil {
-		return userGames, err
-	}
-
-	return userGames, nil
-}
-
-// 確保指定的User存在，不存在就直接建立
-func FindOrCreateUser(userID string, userName string) (User, error) {
-	var user User
-
-	err := Dbs.Where("id = ?", userID).FirstOrCreate(&user, User{ID: userID, Name: userName}).Error
-	if err != nil {
-		return user, err
-	}
-
-	return user, nil
-}
