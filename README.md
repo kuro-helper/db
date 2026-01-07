@@ -1,8 +1,8 @@
-# db
+# kurohelper-db
 
 [English Version README](./README_EN.md)
 
-`db` 是 KuroHelper 專案的核心資料庫模組，負責儲存與管理 KuroHelper 所需的部分資料。
+`kurohelper-db` 是 KuroHelper 專案的核心資料庫模組，負責儲存與管理 KuroHelper 所需的部分資料。
 
 ## 主要功能
 
@@ -13,6 +13,20 @@
 
 使用 Go Modules：
 
+- v3
+
 ```bash
-go get github.com/kuro-helper/db
+go get github.com/kuro-helper/kurohelper-db/v3
+```
+
+- v2
+
+```bash
+go get github.com/peter910820/kurohelper-db/v2
+```
+
+- v1
+
+```bash
+go get github.com/peter910820/kurohelper-db
 ```
