@@ -24,6 +24,17 @@ func SelectUserInWish(userID string) ([]UserInWish, error) {
 	return inWish, nil
 }
 
+func GetUserInWish(userID string, gameErogsID int) (UserInWish, error) {
+	var userInWish UserInWish
+
+	err := Dbs.First(&userInWish, "user_id = ? AND game_erogs_id = ?", userID, gameErogsID).Error
+	if err != nil {
+		return userInWish, err
+	}
+
+	return userInWish, nil
+}
+
 func CreateUserInWish(userID string, gameErogsID int) error {
 	userInWish := UserInWish{
 		UserID:      userID,

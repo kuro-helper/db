@@ -25,6 +25,17 @@ func SelectUserHasPlayed(userID string) ([]UserHasPlayed, error) {
 	return hasPlayed, nil
 }
 
+func GetUserHasPlayed(userID string, gameErogsID int) (UserHasPlayed, error) {
+	var userHasPlayed UserHasPlayed
+
+	err := Dbs.First(&userHasPlayed, "user_id = ? AND game_erogs_id = ?", userID, gameErogsID).Error
+	if err != nil {
+		return userHasPlayed, err
+	}
+
+	return userHasPlayed, nil
+}
+
 func CreateUserHasPlayed(userID string, gameErogsID int, completedAt *time.Time) error {
 	userHasPlayed := UserHasPlayed{
 		UserID:      userID,
