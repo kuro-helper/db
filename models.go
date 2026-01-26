@@ -84,6 +84,17 @@ type WebAPIToken struct {
 	UpdatedAt time.Time `gorm:"autoUpdateTime"`
 }
 
+// 公告資料表
+type Announcement struct {
+	ID        int       `gorm:"primaryKey"`
+	Category  string    `gorm:"not null"`
+	Content   string    `gorm:"not null"` // markdown內文
+	Thumbnail *string   // 側邊小圖
+	Image     *string   // 底部大圖
+	CreatedAt time.Time `gorm:"autoCreateTime"`
+	UpdatedAt time.Time `gorm:"autoUpdateTime"`
+}
+
 func (ZhtwToJp) TableName() string {
 	return "zhtw_to_jp"
 }

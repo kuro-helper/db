@@ -24,6 +24,7 @@ func Migration(db *gorm.DB) error {
 		&UserHasPlayed{},
 		&UserInWish{},
 	)
+	db.AutoMigrate(&Announcement{})
 
 	return nil
 }
