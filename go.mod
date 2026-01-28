@@ -1,4 +1,4 @@
-module github.com/kuro-helper/kurohelper-db/v3
+module kurohelper-db
 
 go 1.24.0
 
