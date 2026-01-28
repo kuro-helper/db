@@ -9,9 +9,13 @@
 
 ## Installation
 
+> [!IMPORTANT]
+> The final version of this project cached by the Go Proxy is **v3.1.0**.
+> Subsequent versions require manual building. Please clone the repository and use replace in your go.mod.
+
 Using Go Modules:
 
-- v3
+- v3(Up to **v3.1.0** only)
 
 ```bash
 go get github.com/kuro-helper/kurohelper-db/v3

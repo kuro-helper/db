@@ -11,9 +11,13 @@
 
 ## 安裝
 
+> [!IMPORTANT]
+> 此專案被golang proxy快取的最終版本為**v3.1.0**
+> 之後的版本採用手動建置的方式，請自行clone以及replace
+
 使用 Go Modules：
 
-- v3
+- v3(僅到**v3.1.0**)
 
 ```bash
 go get github.com/kuro-helper/kurohelper-db/v3
