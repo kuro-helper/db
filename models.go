@@ -28,23 +28,6 @@ type (
 		UpdatedAt time.Time `gorm:"autoUpdateTime" json:"updatedAt"`
 	}
 
-	GameErogs struct {
-		ID           int       `gorm:"primaryKey;autoIncrement:false" json:"id"`
-		BrandErogsID int       `json:"brandErogsId"`
-		Name         string    `gorm:"unique" json:"name"` // 遊戲名稱(批評空間)
-		CreatedAt    time.Time `gorm:"autoCreateTime" json:"createdAt"`
-		UpdatedAt    time.Time `gorm:"autoUpdateTime" json:"updatedAt"`
-
-		BrandErogs *BrandErogs `gorm:"foreignKey:BrandErogsID;references:ID" json:"brandErogs,omitempty"` // 單向 preload
-	}
-
-	BrandErogs struct {
-		ID        int       `gorm:"primaryKey;autoIncrement:false" json:"id"`
-		Name      string    `gorm:"unique" json:"name"`
-		CreatedAt time.Time `gorm:"autoCreateTime" json:"createdAt"`
-		UpdatedAt time.Time `gorm:"autoUpdateTime" json:"updatedAt"`
-	}
-
 	// 2025-12-25 separate two states
 	UserHasPlayed struct {
 		UserID      string     `gorm:"primaryKey" json:"userId"`
@@ -66,6 +49,30 @@ type (
 
 		User      *User      `gorm:"foreignKey:UserID;references:ID" json:"user,omitempty"`
 		GameErogs *GameErogs `gorm:"foreignKey:GameErogsID;references:ID" json:"gameErogs,omitempty"` // 單向 preload
+	}
+)
+
+// Erogs
+type (
+	// game
+	GameErogs struct {
+		ID           int       `gorm:"primaryKey;autoIncrement:false" json:"id"`
+		BrandErogsID int       `json:"brandErogsId"`
+		Name         string    `gorm:"unique" json:"name"` // 遊戲名稱(批評空間)
+		Image        string    `json:"image"`
+		CreatedAt    time.Time `gorm:"autoCreateTime" json:"createdAt"`
+		UpdatedAt    time.Time `gorm:"autoUpdateTime" json:"updatedAt"`
+
+		BrandErogs *BrandErogs `gorm:"foreignKey:BrandErogsID;references:ID" json:"brandErogs,omitempty"` // 單向 preload
+	}
+	// brand
+	BrandErogs struct {
+		ID        int       `gorm:"primaryKey;autoIncrement:false" json:"id"`
+		Name      string    `gorm:"unique" json:"name"`
+		Disband   bool      `json:"disband"`
+		GameCount int       `gorm:"not null;default:0" json:"gameCount"`
+		CreatedAt time.Time `gorm:"autoCreateTime" json:"createdAt"`
+		UpdatedAt time.Time `gorm:"autoUpdateTime" json:"updatedAt"`
 	}
 )
 
