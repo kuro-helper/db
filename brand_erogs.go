@@ -1,21 +1,38 @@
 package kurohelperdb
 
-import "gorm.io/gorm"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 // 確保指定的BrandErogs存在，不存在就直接建立
-func EnsureBrandErogs(brandID int, brandName string) (*BrandErogs, error) {
+func EnsureBrandErogs(brandID int, brandName string, disband bool, gameCount int) (*BrandErogs, error) {
 	var brand BrandErogs
-	if err := Dbs.Where("id = ?", brandID).FirstOrCreate(&brand, BrandErogs{ID: brandID, Name: brandName}).Error; err != nil {
+	if err := Dbs.Where("id = ?", brandID).FirstOrCreate(&brand, BrandErogs{ID: brandID, Name: brandName, Disband: disband, GameCount: gameCount}).Error; err != nil {
 		return nil, err
 	}
 	return &brand, nil
 }
 
 // 確保指定的BrandErogs存在，不存在就直接建立(Tx版本)
-func EnsureBrandErogsTx(tx *gorm.DB, brandID int, brandName string) (*BrandErogs, error) {
+func EnsureBrandErogsTx(tx *gorm.DB, brandID int, brandName string, disband bool, gameCount int) (*BrandErogs, error) {
 	var brand BrandErogs
-	if err := tx.Where("id = ?", brandID).FirstOrCreate(&brand, BrandErogs{ID: brandID, Name: brandName}).Error; err != nil {
+	if err := tx.Where("id = ?", brandID).FirstOrCreate(&brand, BrandErogs{ID: brandID, Name: brandName, Disband: disband, GameCount: gameCount}).Error; err != nil {
 		return nil, err
 	}
 	return &brand, nil
+}
+
+func UpdateBrandErogs(db *gorm.DB, id int, brand *BrandErogs) error {
+	brand.UpdatedAt = time.Now()
+	return db.Model(&BrandErogs{}).Where("id = ?", id).
+		Select("Name", "Disband", "GameCount", "UpdatedAt").
+		Updates(brand).Error
+}
+
+func GetAllBrandErogs(db *gorm.DB) ([]BrandErogs, error) {
+	var brands []BrandErogs
+	err := db.Find(&brands).Error
+	return brands, err
 }

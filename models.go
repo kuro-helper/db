@@ -59,7 +59,7 @@ type (
 		ID           int       `gorm:"primaryKey;autoIncrement:false" json:"id"`
 		BrandErogsID int       `json:"brandErogsId"`
 		Name         string    `gorm:"unique" json:"name"` // 遊戲名稱(批評空間)
-		Image        string    `json:"image"`
+		Image        string    `gorm:"not null" json:"image"`
 		CreatedAt    time.Time `gorm:"autoCreateTime" json:"createdAt"`
 		UpdatedAt    time.Time `gorm:"autoUpdateTime" json:"updatedAt"`
 
