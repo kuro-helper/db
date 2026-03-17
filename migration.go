@@ -20,11 +20,10 @@ func Migration(db *gorm.DB) error {
 		&User{},
 		&BrandErogs{},
 		&GameErogs{},
-		// &UserGameErogs{},
 		&UserHasPlayed{},
 		&UserInWish{},
 	)
-	db.AutoMigrate(&Announcement{})
+	// db.AutoMigrate(&Announcement{})
 
 	return nil
 }
