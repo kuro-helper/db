@@ -1,5 +1,8 @@
 # kurohelper-db
 
+> [!IMPORTANT]
+> 專案已整合(2026/04/03)，請閱讀新專案: [https://github.com/kuro-helper/kurohelper-service](https://github.com/kuro-helper/kurohelper-service)
+
 [English Version README](./README_EN.md)
 
 `kurohelper-db` 是 KuroHelper 專案的核心資料庫模組，負責儲存與管理 KuroHelper 所需的部分資料。

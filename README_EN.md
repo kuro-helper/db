@@ -1,5 +1,8 @@
 # kurohelper-db
 
+> [!IMPORTANT]
+> Project integrated on 2026/04/03. Please check the new repository: [https://github.com/kuro-helper/kurohelper-service](https://github.com/kuro-helper/kurohelper-service)
+
 `kurohelper-db` is the core database module of the KuroHelper project, responsible for storing and managing part of the data required by KuroHelper.
 
 ## Key Features
